@@ -6,6 +6,13 @@ export const FormWrapper = styled.div`
   align-items: center;
 `;
 
+export const Input = styled.input`
+  background-color: inherit;
+  border: 1px solid #d0cfcf;
+  border-radius: 4px;
+  padding: 14px 16px;
+`;
+
 export const Radio = styled.input`
   background-color: inherit;
   border: 1px solid #d0cfcf;
