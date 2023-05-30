@@ -1,19 +1,15 @@
-import css from './Header.module.css';
 import YourSvg from '../../images/Logo.svg';
+import { Wrapper, ButtomWrapper, Button } from './Header.styled';
 
 const Header = () => {
   return (
-    <div className={css.headerWrapper}>
+    <Wrapper>
       <img src={YourSvg} alt="Logo" width="104" />
-      <div className={css.buttonWrapper}>
-        <button type="button" className={css.buttonHeader}>
-          Users
-        </button>
-        <button type="button" className={css.buttonHeader}>
-          Sign up
-        </button>
-      </div>
-    </div>
+      <ButtomWrapper>
+        <Button type="button">Users</Button>
+        <Button type="button">Sign up</Button>
+      </ButtomWrapper>
+    </Wrapper>
   );
 };
 

@@ -46,3 +46,8 @@ export const PhoneExample = styled.p`
 
   color: #7e7e7e;
 `;
+
+export const Section = styled.section`
+  padding-top: 140px;
+  padding-bottom: 140px;
+`;

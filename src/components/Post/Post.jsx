@@ -9,9 +9,8 @@ import {
   Radio,
   TextInput,
   PhoneExample,
+  Section,
 } from './Post.styled';
-
-const onChange = evt => {};
 
 const Post = () => {
   const [position, setPosition] = useState(null);
@@ -77,61 +76,67 @@ const Post = () => {
   };
 
   return (
-    <FormWrapper>
-      {send ? (
-        <div>
-          <h2>User successfully registered</h2>
-          <img src={SuccesImg} alt="" />
-        </div>
-      ) : (
-        <div>
-          {' '}
-          <h2>Working with POST request</h2>
-          <Form method="post" onSubmit={handleFormSubmit}>
-            <TextInput
-              type="text"
-              placeholder="Your name"
-              name="name"
-              onChange={evt => setName(evt.target.value.trim())}
-            />
-            <TextInput
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={evt => setEmail(evt.target.value.trim())}
-            />
-            <label>
+    <Section>
+      <FormWrapper>
+        {send ? (
+          <div>
+            <h2>User successfully registered</h2>
+            <img src={SuccesImg} alt="" />
+          </div>
+        ) : (
+          <div>
+            {' '}
+            <h2>Working with POST request</h2>
+            <Form method="post" onSubmit={handleFormSubmit}>
               <TextInput
-                type="phone"
-                placeholder="Phone"
-                name="phone"
-                onChange={evt => setPhone(evt.target.value.trim())}
+                type="text"
+                placeholder="Your name"
+                name="name"
+                onChange={evt => setName(evt.target.value.trim())}
               />
-              <PhoneExample>+38 (XXX) XXX - XX - XX</PhoneExample>
-            </label>
-            <p>Select your position</p>
-            <label onChange={evt => setPosition(evt.target.value)}>
-              <Radio type="radio" name="position" value="Frontend developer" />
-              Frontend developer
-            </label>
-            <label onChange={evt => setPosition(evt.target.value)}>
-              <Radio type="radio" name="position" value="Backend developer" />
-              Backend developer
-            </label>
-            <label onChange={evt => setPosition(evt.target.value)}>
-              <Radio type="radio" name="position" value="Designer" />
-              Designer
-            </label>
-            <label onChange={evt => setPosition(evt.target.value)}>
-              <Radio type="radio" name="position" value="QA" />
-              QA
-            </label>
-            <Input type="file" name="photo" />
-            <button type="submit">Sign up</button>
-          </Form>
-        </div>
-      )}
-    </FormWrapper>
+              <TextInput
+                type="email"
+                placeholder="Email"
+                name="email"
+                onChange={evt => setEmail(evt.target.value.trim())}
+              />
+              <label>
+                <TextInput
+                  type="phone"
+                  placeholder="Phone"
+                  name="phone"
+                  onChange={evt => setPhone(evt.target.value.trim())}
+                />
+                <PhoneExample>+38 (XXX) XXX - XX - XX</PhoneExample>
+              </label>
+              <p>Select your position</p>
+              <label onChange={evt => setPosition(evt.target.value)}>
+                <Radio
+                  type="radio"
+                  name="position"
+                  value="Frontend developer"
+                />
+                Frontend developer
+              </label>
+              <label onChange={evt => setPosition(evt.target.value)}>
+                <Radio type="radio" name="position" value="Backend developer" />
+                Backend developer
+              </label>
+              <label onChange={evt => setPosition(evt.target.value)}>
+                <Radio type="radio" name="position" value="Designer" />
+                Designer
+              </label>
+              <label onChange={evt => setPosition(evt.target.value)}>
+                <Radio type="radio" name="position" value="QA" />
+                QA
+              </label>
+              <Input type="file" name="photo" />
+              <button type="submit">Sign up</button>
+            </Form>
+          </div>
+        )}
+      </FormWrapper>
+    </Section>
   );
 };
 

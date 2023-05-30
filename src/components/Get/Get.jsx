@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
-import css from './Get.module.css';
+import {
+  Section,
+  GetWrapper,
+  Title,
+  List,
+  Item,
+  Avatar,
+  SeeMoreButton,
+  UserInfo,
+} from './Get.styled';
 
 const Get = () => {
   const [users, setUsers] = useState([]);
@@ -12,7 +21,6 @@ const Get = () => {
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         if (!data.users) {
           throw new Error('Nothing found for your request');
         }
@@ -33,37 +41,31 @@ const Get = () => {
   };
 
   return (
-    <div className={css.getWrapper}>
-      <h2 className={css.getTitle}>Working with GET request</h2>
-      <ul className={css.getList}>
-        {users
-          .sort(user => user.registration_timestamp)
-          .map(user => {
-            return (
-              <li key={user.id} className={css.getItem}>
-                <img
-                  src={user.photo}
-                  alt={user.name}
-                  className={css.getImage}
-                />
-                <p>{user.name}</p>
-                <p>{user.position}</p>
-                <p>{user.email}</p>
-                <p>{user.phone}</p>
-              </li>
-            );
-          })}
-      </ul>
-      {isSeeMore && (
-        <button
-          type="button"
-          className={css.buttonSeeMore}
-          onClick={onLoadMore}
-        >
-          Show more
-        </button>
-      )}
-    </div>
+    <Section>
+      <GetWrapper>
+        <Title>Working with GET request</Title>
+        <List>
+          {users
+            .sort(user => user.registration_timestamp)
+            .map(user => {
+              return (
+                <Item key={user.id}>
+                  <Avatar src={user.photo} alt={user.name} />
+                  <UserInfo>{user.name}</UserInfo>
+                  <UserInfo>{user.position}</UserInfo>
+                  <UserInfo>{user.email}</UserInfo>
+                  <UserInfo>{user.phone}</UserInfo>
+                </Item>
+              );
+            })}
+        </List>
+        {isSeeMore && (
+          <SeeMoreButton type="button" onClick={onLoadMore}>
+            Show more
+          </SeeMoreButton>
+        )}
+      </GetWrapper>
+    </Section>
   );
 };
 
