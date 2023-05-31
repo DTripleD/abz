@@ -103,25 +103,35 @@ const Post = () => {
             onSubmit={handleFormSubmit}
             className="register-user__form"
           >
-            <TextInput
-              type="text"
-              placeholder="Your name"
-              name="name"
-              onChange={evt => setName(evt.target.value.trim())}
-            />
-            <TextInput
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={evt => setEmail(evt.target.value.trim())}
-            />
-            <label>
-              <TextInput
+            <label className="input">
+              <input
+                className="input__field"
+                type="text"
+                placeholder=" "
+                name="name"
+                onChange={evt => setName(evt.target.value.trim())}
+              />
+              <span className="input__label">Your name</span>
+            </label>
+            <label class="input">
+              <input
+                className="input__field"
+                type="email"
+                placeholder=" "
+                name="email"
+                onChange={evt => setEmail(evt.target.value.trim())}
+              />
+              <span className="input__label">Email</span>
+            </label>
+            <label className="input">
+              <input
                 type="phone"
-                placeholder="Phone"
+                placeholder=" "
                 name="phone"
+                className="input__field"
                 onChange={evt => setPhone(evt.target.value.trim())}
               />
+              <span className="input__label">Phone</span>
               <PhoneExample>+38 (XXX) XXX - XX - XX</PhoneExample>
             </label>
             <RadioWrapper>

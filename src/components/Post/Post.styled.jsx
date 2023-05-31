@@ -52,14 +52,7 @@ export const Form = styled.form`
   gap: 50px;
 `;
 
-export const TextInput = styled.input`
-  background-color: inherit;
-  border: 1px solid #d0cfcf;
-  border-radius: 4px;
-  padding: 14px 16px;
-  box-sizing: border-box;
-  width: 100%;
-`;
+export const TextInput = styled.input``;
 
 export const PhoneExample = styled.p`
   font-size: 12px;
