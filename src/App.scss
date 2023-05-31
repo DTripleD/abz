@@ -47,13 +47,13 @@ section {
 }
 
 .header-wrapper {
-  @media screen and (max-width: 1024px) {
-    display: flex;
-    align-items: flex-start;
+  padding: 13px 0;
+  @media screen and (max-width: 1200px) {
+    padding: 13px 60px;
   }
 
   @media screen and (max-width: 768px) {
-    padding: 17px 32px;
+    padding: 13px 32px;
   }
 
   @media screen and (max-width: 360px) {
@@ -62,16 +62,10 @@ section {
 }
 
 .get-block {
-  @media screen and (max-width: 768px) {
-    padding: 164px 16px;
-  }
-
-  @media screen and (min-width: 768px) {
-    padding: 89px 194px;
-  }
+  padding: 164px 16px;
 
   @media screen and (max-width: 360px) {
-    padding: 40px 16px 71px 16px;
+    padding: 89px 0;
   }
 }
 
