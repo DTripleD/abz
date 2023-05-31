@@ -27,10 +27,12 @@ const Post = () => {
   const [buttonStatus, setButtonStatus] = useState(true);
 
   useEffect(() => {
-    if (name && email && phone && position && fileField.length) {
+    if (name && email && phone && position && fileField.length > 0) {
       setButtonStatus(false);
     }
   }, [email, fileField.length, name, phone, position]);
+
+  console.log(fileField);
 
   useEffect(() => {
     getToken()
@@ -41,7 +43,7 @@ const Post = () => {
   const handleFormSubmit = event => {
     event.preventDefault();
 
-    if (fileField.length || !position || !name || !email || !phone) {
+    if (fileField.length === 0 || !position || !name || !email || !phone) {
       Notify.warning('Fill in all the fields', { timeout: 3000 });
       return;
     }
@@ -51,7 +53,7 @@ const Post = () => {
     formData.append('name', name);
     formData.append('email', email);
     formData.append('phone', phone);
-    formData.append('photo', fileField.files[0]);
+    formData.append('photo', fileField[0]);
 
     registerUser(formData, token)
       .then(data => {
@@ -88,15 +90,19 @@ const Post = () => {
   return (
     <Section id="post">
       {send ? (
-        <FormWrapper>
-          <h2>User successfully registered</h2>
+        <FormWrapper className="post__form">
+          <Title>User successfully registered</Title>
           <img src={SuccesImg} alt="" />
         </FormWrapper>
       ) : (
-        <FormWrapper className='post__form'>
+        <FormWrapper className="post__form">
           {' '}
           <Title>Working with POST request</Title>
-          <Form method="post" onSubmit={handleFormSubmit} className='register-user__form'>
+          <Form
+            method="post"
+            onSubmit={handleFormSubmit}
+            className="register-user__form"
+          >
             <TextInput
               type="text"
               placeholder="Your name"

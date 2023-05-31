@@ -25,3 +25,7 @@ export const Button = styled.button`
   font-weight: 400;
   cursor: pointer;
 `;
+
+export const HeaderSection = styled.header`
+  background-color: #ffffff;
+`;
