@@ -93,7 +93,7 @@ const Post = () => {
           <img src={SuccesImg} alt="" />
         </FormWrapper>
       ) : (
-        <FormWrapper>
+        <FormWrapper className='post__form'>
           {' '}
           <Title>Working with POST request</Title>
           <Form method="post" onSubmit={handleFormSubmit}>

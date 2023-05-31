@@ -17,7 +17,7 @@ export const Title = styled.h2`
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 29px;
+
   justify-content: space-between;
 `;
 
@@ -30,7 +30,7 @@ export const Item = styled.li`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  flex-basis: calc((100% - 178px) / 3);
+
   display: flex;
   gap: 20px;
 `;

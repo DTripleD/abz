@@ -4,7 +4,7 @@ import { scrollTo } from 'services/scrollTo/scrollTo';
 
 const Header = () => {
   return (
-    <Wrapper>
+    <Wrapper className="header-wrapper">
       <img src={YourSvg} alt="Logo" width="104" />
       <ButtomWrapper>
         <Button type="button" onClick={() => scrollTo('get')}>

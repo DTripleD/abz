@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import BackgroundImage from '../../images/background-image.jpg';
 
 export const Section = styled.section`
-  padding: 164px 0;
   background-color: #f4e041;
   background-image: linear-gradient(
       0deg,
@@ -15,6 +14,8 @@ export const Section = styled.section`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 export const HeroContainer = styled.div`
@@ -24,7 +25,6 @@ export const HeroContainer = styled.div`
 `;
 
 export const TextWrapper = styled.div`
-  width: 380px;
   text-align: center;
 `;
 

@@ -49,7 +49,7 @@ export const Radio = styled.input`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 380px;
+  width: 100%;
   gap: 50px;
 `;
 
@@ -74,7 +74,9 @@ export const Section = styled.section`
   padding-bottom: 100px;
 `;
 
-export const Title = styled.h2``;
+export const Title = styled.h2`
+  text-align: center;
+`;
 
 export const RadioWrapper = styled.div`
   display: flex;

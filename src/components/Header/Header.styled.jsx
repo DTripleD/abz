@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.section`
   display: flex;
   justify-content: space-between;
-  padding: 13px 0;
+  max-width: 1170px;
+  box-sizing: border-box;
 `;
 
 export const ButtomWrapper = styled.div`

@@ -10,9 +10,9 @@ import { scrollTo } from 'services/scrollTo/scrollTo';
 
 const Hero = () => {
   return (
-    <Section>
+    <Section className="get-block">
       <HeroContainer>
-        <TextWrapper>
+        <TextWrapper className="text-wrapper">
           <HeroTitle>Test assignment for front-end developer</HeroTitle>
           <HeroSubTitle>
             What defines a good front-end developer is one that has skilled

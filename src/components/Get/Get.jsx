@@ -41,15 +41,15 @@ const Get = () => {
   };
 
   return (
-    <Section id='get'>
-      <GetWrapper>
+    <Section id="get">
+      <GetWrapper className="post__form ">
         <Title>Working with GET request</Title>
-        <List>
+        <List className="get__list">
           {users
             .sort(user => user.registration_timestamp)
             .map(user => {
               return (
-                <Item key={user.id}>
+                <Item key={user.id} className="get__item">
                   <Avatar src={user.photo} alt={user.name} />
                   <UserInfo>{user.name}</UserInfo>
                   <div>
