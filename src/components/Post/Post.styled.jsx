@@ -31,19 +31,18 @@ export const FileInput = styled.input`
 
 export const Radio = styled.input`
   background-color: inherit;
-  border: 1px solid #d0cfcf;
-  border-radius: 4px;
-  padding: 14px 16px;
+  /* padding: 14px 16px; */
   font-size: 16px;
   line-height: 1.62;
+  height: 20px;
+  width: 20px;
 
   &:checked {
-    background-color: #00bdd3;
+    /* accent-color: #00bdd3; */
+    /* padding: 14px 16px; */
   }
 
   /* Black 87 */
-
-  color: rgba(0, 0, 0, 0.87);
 `;
 
 export const Form = styled.form`
@@ -65,6 +64,7 @@ export const TextInput = styled.input`
 export const PhoneExample = styled.p`
   font-size: 12px;
   line-height: 14px;
+  margin-left: 16px;
 
   color: #7e7e7e;
 `;

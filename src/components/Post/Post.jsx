@@ -151,6 +151,7 @@ const Post = () => {
               type="file"
               name="photo"
               onChange={evt => setFileField(evt.target.files)}
+              accept="image/jpeg"
             />
             <FormButton type="submit" disabled={buttonStatus}>
               Sign up
