@@ -96,7 +96,7 @@ const Post = () => {
         <FormWrapper className='post__form'>
           {' '}
           <Title>Working with POST request</Title>
-          <Form method="post" onSubmit={handleFormSubmit}>
+          <Form method="post" onSubmit={handleFormSubmit} className='register-user__form'>
             <TextInput
               type="text"
               placeholder="Your name"

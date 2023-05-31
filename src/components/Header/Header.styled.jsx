@@ -5,6 +5,7 @@ export const Wrapper = styled.section`
   justify-content: space-between;
   max-width: 1170px;
   box-sizing: border-box;
+  align-items: center;
 `;
 
 export const ButtomWrapper = styled.div`
@@ -17,9 +18,8 @@ export const Button = styled.button`
   border-radius: 80px;
   border: none;
   width: 100px;
-
+  padding: 4px 0;
   margin: 0;
-  padding: 0;
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 400;
