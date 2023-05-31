@@ -5,11 +5,15 @@ import SuccesImg from '../../images/success-image.svg';
 import {
   Form,
   FormWrapper,
-  Input,
   Radio,
   TextInput,
   PhoneExample,
   Section,
+  Title,
+  RadioWrapper,
+  RadioLabel,
+  FileInput,
+  FormButton,
 } from './Post.styled';
 
 const Post = () => {
@@ -18,9 +22,15 @@ const Post = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState(null);
   const [send, setSend] = useState(false);
+  const [fileField, setFileField] = useState({});
   const [token, setToken] = useState('');
+  const [buttonStatus, setButtonStatus] = useState(true);
 
-  const fileField = document.querySelector('input[type="file"]');
+  useEffect(() => {
+    if (name && email && phone && position && fileField.length) {
+      setButtonStatus(false);
+    }
+  }, [email, fileField.length, name, phone, position]);
 
   useEffect(() => {
     getToken()
@@ -31,7 +41,7 @@ const Post = () => {
   const handleFormSubmit = event => {
     event.preventDefault();
 
-    if (fileField.files.lenght || !position || !name || !email || !phone) {
+    if (fileField.length || !position || !name || !email || !phone) {
       Notify.warning('Fill in all the fields', { timeout: 3000 });
       return;
     }
@@ -76,66 +86,72 @@ const Post = () => {
   };
 
   return (
-    <Section>
-      <FormWrapper>
-        {send ? (
-          <div>
-            <h2>User successfully registered</h2>
-            <img src={SuccesImg} alt="" />
-          </div>
-        ) : (
-          <div>
-            {' '}
-            <h2>Working with POST request</h2>
-            <Form method="post" onSubmit={handleFormSubmit}>
+    <Section id="post">
+      {send ? (
+        <FormWrapper>
+          <h2>User successfully registered</h2>
+          <img src={SuccesImg} alt="" />
+        </FormWrapper>
+      ) : (
+        <FormWrapper>
+          {' '}
+          <Title>Working with POST request</Title>
+          <Form method="post" onSubmit={handleFormSubmit}>
+            <TextInput
+              type="text"
+              placeholder="Your name"
+              name="name"
+              onChange={evt => setName(evt.target.value.trim())}
+            />
+            <TextInput
+              type="email"
+              placeholder="Email"
+              name="email"
+              onChange={evt => setEmail(evt.target.value.trim())}
+            />
+            <label>
               <TextInput
-                type="text"
-                placeholder="Your name"
-                name="name"
-                onChange={evt => setName(evt.target.value.trim())}
+                type="phone"
+                placeholder="Phone"
+                name="phone"
+                onChange={evt => setPhone(evt.target.value.trim())}
               />
-              <TextInput
-                type="email"
-                placeholder="Email"
-                name="email"
-                onChange={evt => setEmail(evt.target.value.trim())}
-              />
-              <label>
-                <TextInput
-                  type="phone"
-                  placeholder="Phone"
-                  name="phone"
-                  onChange={evt => setPhone(evt.target.value.trim())}
-                />
-                <PhoneExample>+38 (XXX) XXX - XX - XX</PhoneExample>
-              </label>
+              <PhoneExample>+38 (XXX) XXX - XX - XX</PhoneExample>
+            </label>
+            <RadioWrapper>
               <p>Select your position</p>
-              <label onChange={evt => setPosition(evt.target.value)}>
+              <RadioLabel onChange={evt => setPosition(evt.target.value)}>
                 <Radio
                   type="radio"
                   name="position"
                   value="Frontend developer"
                 />
                 Frontend developer
-              </label>
-              <label onChange={evt => setPosition(evt.target.value)}>
+              </RadioLabel>
+              <RadioLabel onChange={evt => setPosition(evt.target.value)}>
                 <Radio type="radio" name="position" value="Backend developer" />
                 Backend developer
-              </label>
-              <label onChange={evt => setPosition(evt.target.value)}>
+              </RadioLabel>
+              <RadioLabel onChange={evt => setPosition(evt.target.value)}>
                 <Radio type="radio" name="position" value="Designer" />
                 Designer
-              </label>
-              <label onChange={evt => setPosition(evt.target.value)}>
+              </RadioLabel>
+              <RadioLabel onChange={evt => setPosition(evt.target.value)}>
                 <Radio type="radio" name="position" value="QA" />
                 QA
-              </label>
-              <Input type="file" name="photo" />
-              <button type="submit">Sign up</button>
-            </Form>
-          </div>
-        )}
-      </FormWrapper>
+              </RadioLabel>
+            </RadioWrapper>
+            <FileInput
+              type="file"
+              name="photo"
+              onChange={evt => setFileField(evt.target.files)}
+            />
+            <FormButton type="submit" disabled={buttonStatus}>
+              Sign up
+            </FormButton>
+          </Form>
+        </FormWrapper>
+      )}
     </Section>
   );
 };

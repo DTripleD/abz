@@ -6,6 +6,7 @@ import {
   HeroSubTitle,
   HeroButton,
 } from './Hero.styled';
+import { scrollTo } from 'services/scrollTo/scrollTo';
 
 const Hero = () => {
   return (
@@ -20,7 +21,9 @@ const Hero = () => {
             mind. They should also be excited to learn, as the world of
             Front-End Development keeps evolving.
           </HeroSubTitle>
-          <HeroButton type="button">Sign up</HeroButton>
+          <HeroButton type="button" onClick={() => scrollTo('post')}>
+            Sign up
+          </HeroButton>
         </TextWrapper>
       </HeroContainer>
     </Section>

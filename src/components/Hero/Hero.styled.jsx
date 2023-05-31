@@ -3,8 +3,7 @@ import styled from '@emotion/styled';
 import BackgroundImage from '../../images/background-image.jpg';
 
 export const Section = styled.section`
-  padding-top: 164px;
-  padding-bottom: 167px;
+  padding: 164px 0;
   background-color: #f4e041;
   background-image: linear-gradient(
       0deg,
@@ -59,4 +58,5 @@ export const HeroButton = styled.button`
   font-weight: 400;
   padding-top: 4px;
   padding-bottom: 4px;
+  cursor: pointer;
 `;

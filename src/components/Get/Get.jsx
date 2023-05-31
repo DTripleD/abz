@@ -41,7 +41,7 @@ const Get = () => {
   };
 
   return (
-    <Section>
+    <Section id='get'>
       <GetWrapper>
         <Title>Working with GET request</Title>
         <List>
@@ -52,9 +52,11 @@ const Get = () => {
                 <Item key={user.id}>
                   <Avatar src={user.photo} alt={user.name} />
                   <UserInfo>{user.name}</UserInfo>
-                  <UserInfo>{user.position}</UserInfo>
-                  <UserInfo>{user.email}</UserInfo>
-                  <UserInfo>{user.phone}</UserInfo>
+                  <div>
+                    <UserInfo>{user.position}</UserInfo>
+                    <UserInfo>{user.email}</UserInfo>
+                    <UserInfo>{user.phone}</UserInfo>
+                  </div>
                 </Item>
               );
             })}

@@ -2,17 +2,16 @@ import styled from '@emotion/styled';
 
 export const Section = styled.section`
   padding-top: 140px;
-  padding-bottom: 140px;
 `;
 
 export const GetWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 50px;
 `;
 
 export const Title = styled.h2`
   text-align: center;
-  margin-bottom: 50px;
 `;
 
 export const List = styled.ul`
@@ -23,7 +22,7 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  height: 254px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 10px;
   display: flex;
@@ -31,15 +30,15 @@ export const Item = styled.li`
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  width: 360px;
+  flex-basis: calc((100% - 178px) / 3);
+  display: flex;
+  gap: 20px;
 `;
 
 export const Avatar = styled.img`
   height: 70px;
   width: 70px;
   border-radius: 50%;
-  margin-left: 150px;
-  margin-right: 150px;
 `;
 
 export const SeeMoreButton = styled.button`
@@ -47,6 +46,7 @@ export const SeeMoreButton = styled.button`
   border-radius: 80px;
   border: none;
   width: 100px;
+  cursor: pointer;
 
   margin: 0;
   padding: 0;

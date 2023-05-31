@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 13px 60px;
+  padding: 13px 0;
 `;
 
 export const ButtomWrapper = styled.div`
@@ -22,4 +22,5 @@ export const Button = styled.button`
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 400;
+  cursor: pointer;
 `;
