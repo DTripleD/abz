@@ -23,6 +23,7 @@ const Post = () => {
   const [fileField, setFileField] = useState({});
   const [token, setToken] = useState('');
   const [buttonStatus, setButtonStatus] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -63,8 +64,6 @@ const Post = () => {
   const handleFormSubmit = () => {
     const formData = new FormData();
     const values = getValues();
-
-    console.log(Number(values.radio));
 
     formData.append('position_id', Number(values.radio));
     formData.append('name', values.name);
@@ -187,37 +186,53 @@ const Post = () => {
             </label>
             <RadioWrapper>
               <p>Select your position</p>
-              <RadioLabel>
+
+              <div className="radio-item">
                 <Radio
                   {...register('radio')}
+                  type="radio"
+                  name="radio"
+                  id="1"
+                  className="radio"
                   value="1"
-                  type="radio"
-                  name="radio"
                 />
-                Frontend developer
-              </RadioLabel>
-              <RadioLabel>
+                <RadioLabel htmlFor="1">Frontend developer</RadioLabel>
+              </div>
+
+              <div className="radio-item">
                 <Radio
                   {...register('radio')}
+                  type="radio"
+                  name="radio"
+                  id="2"
+                  className="radio"
                   value="2"
-                  type="radio"
-                  name="radio"
                 />
-                Backend developer
-              </RadioLabel>
-              <RadioLabel>
+                <RadioLabel htmlFor="2">Backend developer</RadioLabel>
+              </div>
+
+              <div className="radio-item">
                 <Radio
                   {...register('radio')}
-                  value="3"
                   type="radio"
                   name="radio"
+                  id="3"
+                  className="radio"
+                  value="3"
                 />
-                Designer
-              </RadioLabel>
-              <RadioLabel>
-                <Radio {...register('radio')} value="4" type="radio" />
-                QA
-              </RadioLabel>
+                <RadioLabel htmlFor="3">Designer</RadioLabel>
+              </div>
+              <div className="radio-item">
+                <Radio
+                  {...register('radio')}
+                  type="radio"
+                  name="radio"
+                  id="4"
+                  className="radio"
+                  value="4"
+                />
+                <RadioLabel htmlFor="4">QA</RadioLabel>
+              </div>
             </RadioWrapper>
             <FileInput
               type="file"

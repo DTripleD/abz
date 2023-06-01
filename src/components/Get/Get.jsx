@@ -9,6 +9,7 @@ import {
   SeeMoreButton,
   UserInfo,
 } from './Get.styled';
+import Loader from 'components/Loader/Loader';
 
 import { getUsers } from 'services/services';
 import UserImg from '../../images/photo-cover.svg';
@@ -18,7 +19,10 @@ const Get = () => {
   const [page, setPage] = useState(1);
   const [isSeeMore, setIsSeeMore] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
     getUsers(page)
       .then(data => {
         if (!data.users) {
@@ -33,7 +37,8 @@ const Get = () => {
 
         setUsers(prevState => [...prevState, ...data.users]);
       })
-      .catch(error => console.log(error));
+      .catch(error => console.log(error))
+      .finally(setIsLoading(false));
   }, [page]);
 
   const onLoadMore = () => {
@@ -44,23 +49,27 @@ const Get = () => {
     <Section id="get">
       <GetWrapper className="post__form ">
         <Title>Working with GET request</Title>
-        <List className="get__list">
-          {users
-            .sort(user => user.registration_timestamp)
-            .map(user => {
-              return (
-                <Item key={user.id} className="get__item">
-                  <Avatar src={user.photo || UserImg} alt={user.name} />
-                  <UserInfo>{user.name}</UserInfo>
-                  <div>
-                    <UserInfo>{user.position}</UserInfo>
-                    <UserInfo>{user.email}</UserInfo>
-                    <UserInfo>{user.phone}</UserInfo>
-                  </div>
-                </Item>
-              );
-            })}
-        </List>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <List className="get__list">
+            {users
+              .sort(user => user.registration_timestamp)
+              .map(user => {
+                return (
+                  <Item key={user.id} className="get__item">
+                    <Avatar src={user.photo || UserImg} alt={user.name} />
+                    <UserInfo>{user.name}</UserInfo>
+                    <div>
+                      <UserInfo>{user.position}</UserInfo>
+                      <UserInfo>{user.email}</UserInfo>
+                      <UserInfo>{user.phone}</UserInfo>
+                    </div>
+                  </Item>
+                );
+              })}
+          </List>
+        )}
         {isSeeMore && (
           <SeeMoreButton type="button" onClick={onLoadMore}>
             Show more

@@ -24,17 +24,14 @@ export const FileInput = styled.input`
     padding: 14px;
   }
 
-  &::file-selector-button:hover {
+  /* &::file-selector-button:hover {
     background-color: #ffe302;
-  }
+  } */
 `;
 
 export const Radio = styled.input`
-  background-color: inherit;
   font-size: 16px;
   line-height: 1.62;
-  height: 20px;
-  width: 20px;
 `;
 
 export const Form = styled.form`
@@ -72,7 +69,7 @@ export const RadioWrapper = styled.div`
 
 export const RadioLabel = styled.label`
   display: flex;
-  gap: 13px;
+  align-items: center;
 `;
 
 export const FormButton = styled.button`
