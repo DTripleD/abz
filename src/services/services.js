@@ -1,9 +1,9 @@
 const baseURL = 'https://frontend-test-assignment-api.abz.agency/api/v1';
 
-export const getUsers = count => {
-  return fetch(`${baseURL}users?page=1&count=${count}`).then(
-    response => response.data
-  );
+export const getUsers = page => {
+  return fetch(
+    `https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`
+  ).then(res => res.json());
 };
 
 export const getToken = () => {

@@ -1,3 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  background-color: #f8f8f8;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+}
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.button {
+  cursor: pointer;
+}
+
+address {
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  font-size: 16px;
+  line-height: 26px;
+}
+
 section {
   height: 100%;
   margin: 0 auto;
@@ -118,7 +191,6 @@ section {
 
     display: block;
 
-    // padding: calc((0.5rem) * 1.5) 0.5rem;
     color: currentColor;
     background: transparent;
 
@@ -128,5 +200,27 @@ section {
         transform: translate(0.25rem, -65%) scale(0.8);
       }
     }
+  }
+}
+
+.error {
+  &_input {
+    border-color: red;
+    &:focus-visible {
+      border: 1px solid red;
+    }
+  }
+
+  &_text {
+    color: red;
+  }
+
+  &__message {
+    font-size: 12px;
+    line-height: 14px;
+    margin-left: 16px;
+
+    color: red;
+    position: absolute;
   }
 }

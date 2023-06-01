@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getToken, registerUser } from '../../services/services';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
 import SuccesImg from '../../images/success-image.svg';
+import classNames from 'classnames';
 import {
   Form,
   FormWrapper,
   Radio,
-  TextInput,
   PhoneExample,
   Section,
   Title,
@@ -15,24 +15,44 @@ import {
   FileInput,
   FormButton,
 } from './Post.styled';
+import { useForm } from 'react-hook-form';
+import { validation } from '../../services/validation/validation';
 
 const Post = () => {
-  const [position, setPosition] = useState(null);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState(null);
   const [send, setSend] = useState(false);
   const [fileField, setFileField] = useState({});
   const [token, setToken] = useState('');
-  const [buttonStatus, setButtonStatus] = useState(true);
+  const [buttonStatus, setButtonStatus] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm({
+    mode: 'onChange',
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      radio: '',
+    },
+  });
+
+  const values = getValues();
 
   useEffect(() => {
-    if (name && email && phone && position && fileField.length > 0) {
+    if (
+      values.name === '' ||
+      values.email === '' ||
+      values.phone === '' ||
+      values.radio === ''
+    ) {
+      setButtonStatus(true);
+      return;
+    } else {
       setButtonStatus(false);
     }
-  }, [email, fileField.length, name, phone, position]);
-
-  console.log(fileField);
+  }, [values.email, values.name, values.phone, values.radio]);
 
   useEffect(() => {
     getToken()
@@ -40,48 +60,25 @@ const Post = () => {
       .catch(error => console.log(error));
   }, []);
 
-  const handleFormSubmit = event => {
-    event.preventDefault();
-
-    if (fileField.length === 0 || !position || !name || !email || !phone) {
-      Notify.warning('Fill in all the fields', { timeout: 3000 });
-      return;
-    }
-
+  const handleFormSubmit = () => {
     const formData = new FormData();
-    formData.append('position_id', 2);
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('phone', phone);
+    const values = getValues();
+
+    console.log(Number(values.radio));
+
+    formData.append('position_id', Number(values.radio));
+    formData.append('name', values.name);
+    formData.append('email', values.email);
+    formData.append('phone', values.phone);
     formData.append('photo', fileField[0]);
 
     registerUser(formData, token)
       .then(data => {
         if (data.success) {
-          console.log(data);
           setSend(true);
           return;
         } else {
-          console.log(data);
-          if (data?.fails?.phone) {
-            Notify.warning(data?.fails?.phone.join(' '), { timeout: 3000 });
-            return;
-          }
-
-          if (data?.fails?.email) {
-            Notify.warning(data?.fails?.email.join(' '), { timeout: 3000 });
-            return;
-          }
-        }
-
-        if (data?.fails?.name) {
-          Notify.warning(data?.fails?.name.join(' '), { timeout: 3000 });
-          return;
-        }
-
-        if (data.message) {
-          Notify.warning(data.message, { timeout: 3000 });
-          return;
+          validation(data);
         }
       })
       .catch(error => console.log(error));
@@ -100,60 +97,125 @@ const Post = () => {
           <Title>Working with POST request</Title>
           <Form
             method="post"
-            onSubmit={handleFormSubmit}
+            onSubmit={handleSubmit(handleFormSubmit)}
             className="register-user__form"
           >
             <label className="input">
               <input
-                className="input__field"
+                {...register('name', {
+                  required: 'Enter valid name (Name Surname)',
+                  pattern: {
+                    value: /^[\p{L}]+ [\p{L}]+/gu,
+                    message: 'Enter valid name (Name Surname)',
+                  },
+                })}
+                className={classNames('input__field', {
+                  error_input: errors.name,
+                })}
                 type="text"
                 placeholder=" "
                 name="name"
-                onChange={evt => setName(evt.target.value.trim())}
               />
-              <span className="input__label">Your name</span>
-            </label>
-            <label class="input">
-              <input
-                className="input__field"
-                type="email"
-                placeholder=" "
-                name="email"
-                onChange={evt => setEmail(evt.target.value.trim())}
-              />
-              <span className="input__label">Email</span>
+              <span
+                className={classNames('input__label', {
+                  error_text: errors.name,
+                })}
+              >
+                Your name
+              </span>
+              {errors.name && (
+                <p className="error__message">{errors.name.message}</p>
+              )}
             </label>
             <label className="input">
               <input
+                {...register('email', {
+                  required: 'Enter valid email (qwert@mail.com)',
+                  pattern: {
+                    value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/,
+                    message: 'Enter valid email (qwert@mail.com)',
+                  },
+                })}
+                className={classNames('input__field', {
+                  error_input: errors.email,
+                })}
+                type="email"
+                placeholder=" "
+                name="email"
+              />
+              <span
+                className={classNames('input__label', {
+                  error_text: errors.email,
+                })}
+              >
+                Email
+              </span>
+
+              {errors.email && (
+                <p className="error__message">{errors.email.message}</p>
+              )}
+            </label>
+            <label className="input">
+              <input
+                {...register('phone', {
+                  required: 'Enter valid phone (+38 (XXX) XXX - XX - XX)',
+                  pattern: {
+                    value:
+                      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/,
+                    message: 'Enter valid phone (+38 (XXX) XXX - XX - XX)',
+                  },
+                })}
                 type="phone"
                 placeholder=" "
                 name="phone"
-                className="input__field"
-                onChange={evt => setPhone(evt.target.value.trim())}
+                className={classNames('input__field', {
+                  error_input: errors.phone,
+                })}
               />
-              <span className="input__label">Phone</span>
-              <PhoneExample>+38 (XXX) XXX - XX - XX</PhoneExample>
+              <span
+                className={classNames('input__label', {
+                  error_text: errors.phone,
+                })}
+              >
+                Phone
+              </span>
+              {errors.phone ? (
+                <p className="error__message">{errors.phone.message}</p>
+              ) : (
+                <PhoneExample>+38 (XXX) XXX - XX - XX</PhoneExample>
+              )}
             </label>
             <RadioWrapper>
               <p>Select your position</p>
-              <RadioLabel onChange={evt => setPosition(evt.target.value)}>
+              <RadioLabel>
                 <Radio
+                  {...register('radio')}
+                  value="1"
                   type="radio"
-                  name="position"
-                  value="Frontend developer"
+                  name="radio"
                 />
                 Frontend developer
               </RadioLabel>
-              <RadioLabel onChange={evt => setPosition(evt.target.value)}>
-                <Radio type="radio" name="position" value="Backend developer" />
+              <RadioLabel>
+                <Radio
+                  {...register('radio')}
+                  value="2"
+                  type="radio"
+                  name="radio"
+                />
                 Backend developer
               </RadioLabel>
-              <RadioLabel onChange={evt => setPosition(evt.target.value)}>
-                <Radio type="radio" name="position" value="Designer" />
+              <RadioLabel>
+                <Radio
+                  {...register('radio')}
+                  value="3"
+                  type="radio"
+                  name="radio"
+                />
                 Designer
               </RadioLabel>
-              <RadioLabel onChange={evt => setPosition(evt.target.value)}>
-                <Radio type="radio" name="position" value="QA" />
+              <RadioLabel>
+                <Radio {...register('radio')} value="4" type="radio" />
                 QA
               </RadioLabel>
             </RadioWrapper>

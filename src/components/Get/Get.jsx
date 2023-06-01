@@ -10,16 +10,16 @@ import {
   UserInfo,
 } from './Get.styled';
 
+import { getUsers } from 'services/services';
+import UserImg from '../../images/photo-cover.svg';
+
 const Get = () => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [isSeeMore, setIsSeeMore] = useState(false);
 
   useEffect(() => {
-    fetch(
-      `https://frontend-test-assignment-api.abz.agency/api/v1/users?page=${page}&count=6`
-    )
-      .then(res => res.json())
+    getUsers(page)
       .then(data => {
         if (!data.users) {
           throw new Error('Nothing found for your request');
@@ -50,7 +50,7 @@ const Get = () => {
             .map(user => {
               return (
                 <Item key={user.id} className="get__item">
-                  <Avatar src={user.photo} alt={user.name} />
+                  <Avatar src={user.photo || UserImg} alt={user.name} />
                   <UserInfo>{user.name}</UserInfo>
                   <div>
                     <UserInfo>{user.position}</UserInfo>

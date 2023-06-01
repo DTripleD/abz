@@ -31,18 +31,10 @@ export const FileInput = styled.input`
 
 export const Radio = styled.input`
   background-color: inherit;
-  /* padding: 14px 16px; */
   font-size: 16px;
   line-height: 1.62;
   height: 20px;
   width: 20px;
-
-  &:checked {
-    /* accent-color: #00bdd3; */
-    /* padding: 14px 16px; */
-  }
-
-  /* Black 87 */
 `;
 
 export const Form = styled.form`
@@ -60,6 +52,7 @@ export const PhoneExample = styled.p`
   margin-left: 16px;
 
   color: #7e7e7e;
+  position: absolute;
 `;
 
 export const Section = styled.section`

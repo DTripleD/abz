@@ -3,7 +3,6 @@ import Hero from './Hero/Hero';
 import Get from './Get/Get';
 import Post from './Post/Post';
 import '../App.scss';
-// import '../index.css';
 
 export const App = () => {
   return (
