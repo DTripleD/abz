@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getToken, registerUser } from '../../services/services';
+import { getToken, registerUser } from '../../services/services/services';
 
 import SuccesImg from '../../images/success-image.svg';
 import classNames from 'classnames';

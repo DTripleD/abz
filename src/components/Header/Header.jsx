@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <HeaderSection>
       <Wrapper className="header-wrapper">
-        <img src={YourSvg} alt="Logo" width="104" />
+        <img src={YourSvg} alt="Logo" width="104" height="26" />
         <ButtomWrapper>
           <button type="button" onClick={() => scrollTo('get')}>
             Users

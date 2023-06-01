@@ -11,7 +11,7 @@ import {
 } from './Get.styled';
 import Loader from 'components/Loader/Loader';
 
-import { getUsers } from 'services/services';
+import { getUsers } from 'services/services/services';
 import UserImg from '../../images/photo-cover.svg';
 
 const Get = () => {
@@ -55,18 +55,18 @@ const Get = () => {
           <List className="get__list">
             {users
               .sort(user => user.registration_timestamp)
-              .map(user => {
+              .map(({ id, photo, email, name, position, phone }) => {
                 return (
-                  <Item key={user.id} className="get__item">
-                    <Avatar src={user.photo || UserImg} alt={user.name} />
-                    <UserInfo>{user.name}</UserInfo>
+                  <Item key={id} className="get__item">
+                    <Avatar src={photo || UserImg} alt={name} />
+                    <UserInfo>{name}</UserInfo>
                     <div>
-                      <UserInfo>{user.position}</UserInfo>
+                      <UserInfo>{position}</UserInfo>
                       <div className="tooltip">
-                        {user.email}
-                        <span className="tooltiptext">{user.email}</span>
+                        {email}
+                        <span className="tooltiptext">{email}</span>
                       </div>
-                      <UserInfo>{user.phone}</UserInfo>
+                      <UserInfo>{phone}</UserInfo>
                     </div>
                   </Item>
                 );
