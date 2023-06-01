@@ -1,5 +1,5 @@
 import YourSvg from '../../images/Logo.svg';
-import { Wrapper, ButtomWrapper, Button, HeaderSection } from './Header.styled';
+import { Wrapper, ButtomWrapper, HeaderSection } from './Header.styled';
 import { scrollTo } from 'services/scrollTo/scrollTo';
 
 const Header = () => {
@@ -8,12 +8,12 @@ const Header = () => {
       <Wrapper className="header-wrapper">
         <img src={YourSvg} alt="Logo" width="104" />
         <ButtomWrapper>
-          <Button type="button" onClick={() => scrollTo('get')}>
+          <button type="button" onClick={() => scrollTo('get')}>
             Users
-          </Button>
-          <Button type="button" onClick={() => scrollTo('post')}>
+          </button>
+          <button type="button" onClick={() => scrollTo('post')}>
             Sign up
-          </Button>
+          </button>
         </ButtomWrapper>
       </Wrapper>
     </HeaderSection>

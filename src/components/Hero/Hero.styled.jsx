@@ -44,19 +44,3 @@ export const HeroSubTitle = styled.p`
   color: #ffffff;
   margin-bottom: 32px;
 `;
-
-export const HeroButton = styled.button`
-  background: #f4e041;
-  border-radius: 80px;
-  border: none;
-  width: 100px;
-
-  margin: 0;
-  padding: 0;
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 400;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  cursor: pointer;
-`;

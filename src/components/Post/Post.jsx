@@ -160,7 +160,7 @@ const Post = () => {
                   required: 'Enter valid phone (+38 (XXX) XXX - XX - XX)',
                   pattern: {
                     value:
-                      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/,
+                      /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){12,12}(\s*)?$/,
                     message: 'Enter valid phone (+38 (XXX) XXX - XX - XX)',
                   },
                 })}

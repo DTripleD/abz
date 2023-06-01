@@ -23,10 +23,6 @@ export const FileInput = styled.input`
     transition: background-color 0.2s ease-in-out;
     padding: 14px;
   }
-
-  /* &::file-selector-button:hover {
-    background-color: #ffe302;
-  } */
 `;
 
 export const Radio = styled.input`

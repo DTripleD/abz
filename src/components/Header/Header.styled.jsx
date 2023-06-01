@@ -13,18 +13,7 @@ export const ButtomWrapper = styled.div`
   gap: 10px;
 `;
 
-export const Button = styled.button`
-  background: #f4e041;
-  border-radius: 80px;
-  border: none;
-  width: 100px;
-  padding: 4px 0;
-  margin: 0;
-  font-family: 'Nunito';
-  font-style: normal;
-  font-weight: 400;
-  cursor: pointer;
-`;
+export const Button = styled.button``;
 
 export const HeaderSection = styled.header`
   background-color: #ffffff;
