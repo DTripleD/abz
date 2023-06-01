@@ -1,8 +1,8 @@
 {
-  "name": "react-homework-template",
+  "name": "test-task-abz-agency",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://DTripleD.github.io/abz",
+  "homepage": "https://DTripleD.github.io/test-task-abz-agency",
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
