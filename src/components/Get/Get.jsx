@@ -62,9 +62,9 @@ const Get = () => {
                     <UserInfo>{user.name}</UserInfo>
                     <div>
                       <UserInfo>{user.position}</UserInfo>
-                      <div class="tooltip">
+                      <div className="tooltip">
                         {user.email}
-                        <span class="tooltiptext">{user.email}</span>
+                        <span className="tooltiptext">{user.email}</span>
                       </div>
                       <UserInfo>{user.phone}</UserInfo>
                     </div>
