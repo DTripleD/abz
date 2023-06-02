@@ -91,7 +91,6 @@ const Post = () => {
         </FormWrapper>
       ) : (
         <FormWrapper className="post__form">
-          {' '}
           <Title>Working with POST request</Title>
           <Form
             method="post"

@@ -44,10 +44,11 @@ export const Avatar = styled.img`
 export const SeeMoreButton = styled.button`
   margin-left: auto;
   margin-right: auto;
+
+  width: 120px;
 `;
 
 export const UserInfo = styled.p`
   color: #000000;
   text-align: center;
 `;
-
