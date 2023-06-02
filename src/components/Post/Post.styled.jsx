@@ -9,19 +9,20 @@ export const FormWrapper = styled.div`
 
 export const FileInput = styled.input`
   width: 100%;
-  border: 1px solid #d0cfcf;
   color: #7e7e7e;
+  padding: 0;
 
   border-radius: 4px;
+  height: 54px;
+
   &::file-selector-button {
     margin-right: 16px;
     background-color: inherit;
-    border: 1px solid #000000;
+    border: 1px solid rgba(0, 0, 0, 0.87);
 
     color: #000000;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
-    padding: 14px;
   }
 `;
 

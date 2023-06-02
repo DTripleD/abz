@@ -19,7 +19,6 @@ import { validation } from '../../services/validation/validation';
 
 const Post = () => {
   const [send, setSend] = useState(false);
-  const [fileField, setFileField] = useState({});
   const [token, setToken] = useState('');
   const [buttonStatus, setButtonStatus] = useState(false);
 
@@ -35,24 +34,28 @@ const Post = () => {
       email: '',
       phone: '',
       radio: '',
+      file: '',
     },
   });
 
   const values = getValues();
+
+  console.log(values);
 
   useEffect(() => {
     if (
       values.name === '' ||
       values.email === '' ||
       values.phone === '' ||
-      values.radio === ''
+      values.radio === '' ||
+      values.file === ''
     ) {
       setButtonStatus(true);
       return;
     } else {
       setButtonStatus(false);
     }
-  }, [values.email, values.name, values.phone, values.radio]);
+  }, [values.email, values.file, values.name, values.phone, values.radio]);
 
   useEffect(() => {
     getToken()
@@ -68,7 +71,7 @@ const Post = () => {
     formData.append('name', values.name);
     formData.append('email', values.email);
     formData.append('phone', values.phone);
-    formData.append('photo', fileField[0]);
+    formData.append('photo', values.file[0]);
 
     registerUser(formData, token)
       .then(data => {
@@ -232,12 +235,24 @@ const Post = () => {
                 <RadioLabel htmlFor="4">QA</RadioLabel>
               </div>
             </RadioWrapper>
-            <FileInput
-              type="file"
-              name="photo"
-              onChange={evt => setFileField(evt.target.files)}
-              accept="image/jpeg"
-            />
+
+            <label className="input">
+              <FileInput
+                {...register('file', {
+                  required: 'Select your photo',
+                })}
+                className={classNames('input__field', {
+                  error_input: errors.file,
+                })}
+                type="file"
+                placeholder=" "
+                name="file"
+                accept="image/jpeg"
+              />
+              {errors.file && (
+                <p className="error__message">{errors.file.message}</p>
+              )}
+            </label>
             <FormButton type="submit" disabled={buttonStatus}>
               Sign up
             </FormButton>
