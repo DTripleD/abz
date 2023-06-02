@@ -10,9 +10,8 @@ import {
   UserInfo,
 } from './Get.styled';
 import Loader from 'components/Loader/Loader';
-
 import { getUsers } from 'services/services/services';
-import UserImg from '../../images/photo-cover.svg';
+import UserImg from '../../images/svg/photo-cover.svg';
 
 const Get = () => {
   const [users, setUsers] = useState([]);

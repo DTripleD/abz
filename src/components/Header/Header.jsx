@@ -1,4 +1,4 @@
-import YourSvg from '../../images/Logo.svg';
+import YourSvg from '../../images/svg/logo.svg';
 import { Wrapper, ButtomWrapper, HeaderSection } from './Header.styled';
 import { scrollTo } from 'services/scrollTo/scrollTo';
 

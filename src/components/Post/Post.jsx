@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getToken, registerUser } from '../../services/services/services';
-
-import SuccesImg from '../../images/success-image.svg';
+import SuccesImg from '../../images/svg/success-image.svg';
 import classNames from 'classnames';
 import {
   Form,
