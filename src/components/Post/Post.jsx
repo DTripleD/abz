@@ -20,7 +20,7 @@ import { validation } from '../../services/validation/validation';
 const Post = () => {
   const [send, setSend] = useState(false);
   const [token, setToken] = useState('');
-  const [buttonStatus, setButtonStatus] = useState(false);
+  const [buttonStatus, setButtonStatus] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -42,11 +42,31 @@ const Post = () => {
     },
   });
 
+  console.log(!name);
+
   useEffect(() => {
-    !name || !email || !phone || !radio || !file
+    !name ||
+    !email ||
+    !phone ||
+    !radio ||
+    !file ||
+    errors.name ||
+    errors.email ||
+    errors.phone ||
+    errors.file
       ? setButtonStatus(true)
       : setButtonStatus(false);
-  }, [email, file, name, phone, radio]);
+  }, [
+    email,
+    errors.email,
+    errors.file,
+    errors.name,
+    errors.phone,
+    file,
+    name,
+    phone,
+    radio,
+  ]);
 
   useEffect(() => {
     getToken()
