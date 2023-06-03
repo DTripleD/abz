@@ -21,14 +21,18 @@ const Post = () => {
   const [send, setSend] = useState(false);
   const [token, setToken] = useState('');
   const [buttonStatus, setButtonStatus] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [radio, setRadio] = useState(null);
+  const [file, setFile] = useState(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
   } = useForm({
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       name: '',
       email: '',
@@ -38,24 +42,11 @@ const Post = () => {
     },
   });
 
-  const values = getValues();
-
-  console.log(values);
-
   useEffect(() => {
-    if (
-      values.name === '' ||
-      values.email === '' ||
-      values.phone === '' ||
-      values.radio === '' ||
-      values.file === ''
-    ) {
-      setButtonStatus(true);
-      return;
-    } else {
-      setButtonStatus(false);
-    }
-  }, [values.email, values.file, values.name, values.phone, values.radio]);
+    !name || !email || !phone || !radio || !file
+      ? setButtonStatus(true)
+      : setButtonStatus(false);
+  }, [email, file, name, phone, radio]);
 
   useEffect(() => {
     getToken()
@@ -65,22 +56,16 @@ const Post = () => {
 
   const handleFormSubmit = () => {
     const formData = new FormData();
-    const values = getValues();
 
-    formData.append('position_id', Number(values.radio));
-    formData.append('name', values.name);
-    formData.append('email', values.email);
-    formData.append('phone', values.phone);
-    formData.append('photo', values.file[0]);
+    formData.append('position_id', Number(radio));
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('photo', file[0]);
 
     registerUser(formData, token)
       .then(data => {
-        if (data.success) {
-          setSend(true);
-          return;
-        } else {
-          validation(data);
-        }
+        data.success ? setSend(true) : validation(data);
       })
       .catch(error => console.log(error));
   };
@@ -115,6 +100,7 @@ const Post = () => {
                 type="text"
                 placeholder=" "
                 name="name"
+                onChange={e => setName(e.target.value)}
               />
               <span
                 className={classNames('input__label', {
@@ -142,6 +128,7 @@ const Post = () => {
                 type="email"
                 placeholder=" "
                 name="email"
+                onChange={e => setEmail(e.target.value)}
               />
               <span
                 className={classNames('input__label', {
@@ -168,6 +155,7 @@ const Post = () => {
                 type="phone"
                 placeholder=" "
                 name="phone"
+                onChange={e => setPhone(e.target.value)}
                 className={classNames('input__field', {
                   error_input: errors.phone,
                 })}
@@ -196,6 +184,7 @@ const Post = () => {
                   id="1"
                   className="radio"
                   value="1"
+                  onChange={e => setRadio(e.target.value)}
                 />
                 <RadioLabel htmlFor="1">Frontend developer</RadioLabel>
               </div>
@@ -208,6 +197,7 @@ const Post = () => {
                   id="2"
                   className="radio"
                   value="2"
+                  onChange={e => setRadio(e.target.value)}
                 />
                 <RadioLabel htmlFor="2">Backend developer</RadioLabel>
               </div>
@@ -220,6 +210,7 @@ const Post = () => {
                   id="3"
                   className="radio"
                   value="3"
+                  onChange={e => setRadio(e.target.value)}
                 />
                 <RadioLabel htmlFor="3">Designer</RadioLabel>
               </div>
@@ -231,6 +222,7 @@ const Post = () => {
                   id="4"
                   className="radio"
                   value="4"
+                  onChange={e => setRadio(e.target.value)}
                 />
                 <RadioLabel htmlFor="4">QA</RadioLabel>
               </div>
@@ -248,6 +240,7 @@ const Post = () => {
                 placeholder=" "
                 name="file"
                 accept="image/jpeg"
+                onChange={e => setFile(e.target.files)}
               />
               {errors.file && (
                 <p className="error__message">{errors.file.message}</p>
