@@ -12,13 +12,20 @@ import {
 import Loader from 'components/Loader/Loader';
 import { getUsers } from 'services/services/services';
 import UserImg from '../../images/svg/photo-cover.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { addPeople } from 'redux/userSlice';
+import { getUsersSlice } from 'redux/selectors';
 
 const Get = () => {
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [isSeeMore, setIsSeeMore] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const users = useSelector(getUsersSlice);
+
+  console.log(users);
 
   useEffect(() => {
     setIsLoading(true);
@@ -30,15 +37,19 @@ const Get = () => {
         setIsSeeMore(() => page < Math.ceil(data.total_users / 6));
 
         if (page === 1) {
-          setUsers(data.users);
+          // setUsers(data.users);
+          dispatch(addPeople(data.users));
+
           return;
         }
 
-        setUsers(prevState => [...prevState, ...data.users]);
+        // setUsers(prevState => [...prevState, ...data.users]);
+
+        dispatch(addPeople(data.users));
       })
       .catch(error => console.log(error))
       .finally(setIsLoading(false));
-  }, [page]);
+  }, [dispatch, page]);
 
   const onLoadMore = () => {
     setPage(prevPage => prevPage + 1);
